@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Wishing App</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  
+   <nav class="navbar navbar-expand navbar-dark  bg-primary">
+    <a class="navbar-brand" href="/home">Hello {{ user.first_name }}!</a>
+    <div class="collapse navbar-collapse order-0 dual-collapse2" id="navbarSupportedContent">
+      
+      <span class="navbar-text text-white font-weight-bold mr-auto"></span>
+      
+      <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+              <a class="nav-link" href="/">Add Book and Preview</a>
+            </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/stats">View Stats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/wishes/new">Make a wish!</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <div class="card bg-dark text-white">
+    <div class="card-body text-left">
+      <p class="text-left">Your wish list:</p>
+
+      <div class="container table-responsive mt-5">
+        <table class="table text-center table-hover bg-dark text-white">
+          <thead>
+            <tr>
+              <th>Items</th>
+              <th>Date added</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for wish in wishes%}
+            {% if wish.user.id == user.id and wish.status == "Pending" %}
+            <tr>
+              <td>{{ wish.item }}</td>
+              <td>{{ wish.created_at}}</td>
+              <td>
+                <a href="/wishes/remove/{{wish.id}}">Remove</a>
+                <a href="/wishes/edit/{{wish.id}}">Edit</a>
+                <a href="/wishes/granted/{{wish.id}}">Granted!</a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</div>
+</div>
+
+
+    <div class="card-body table-responsive text-white text-left">
+      <p class="text-left">Granted wishes:</p>
+
+      <div class="table-responsive mt-5">
+        <table class="table text-center table-hover bg-dark text-white">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Wisher</th>
+              <th>Date added</th>
+              <th>Date granted</th>
+              <th>Likes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for wish in granted%}
+              
+            <tr>
+              <td>{{ wish.item }}</td>
+              <td>{{ wish.user.first_name}} {{ wish.user.last_name}}</td>
+              <td>{{ wish.created_at}}</td>
+              <td>{{ wish.updated_at}}</td>
+              <td>{{ wish.likers.count }}</td>
+              <td>
+                {% if wish.user.id != user.id %}
+                <a href="/wish/like/{{wish.id}}">Like</a>
+                {% endif %}
+              </td>
+            </tr>
+            
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</div>
+
+
+
+    
+
+</div>
+</body>
+</html>

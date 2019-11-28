@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Wishing App</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  
+   <nav class="navbar navbar-expand navbar-dark  bg-primary">
+    <a class="navbar-brand" href="/home">Hello {{ user.first_name }}! These are your stats!</a>
+    <div class="collapse navbar-collapse order-0 dual-collapse2" id="navbarSupportedContent">
+      
+      <span class="navbar-text text-white font-weight-bold mr-auto"></span>
+      
+      <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+              <a class="nav-link" href="/">Add Book and Preview</a>
+            </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/wishes">Dashboard</a>
+        </li>
+     
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <div class="card bg-dark text-white">
+    <div class="card-body text-left">
+     
+</div>
+</div>
+
+
+<div class="input-group form-group">
+    <div class="d-block p-2 bg-dark text-white">
+      <span>Total wishes granted so far for all users: {{all_granted}}</span>
+    </div> 
+     
+ </div>
+ <div class="input-group form-group">
+    <div class="d-block p-2 bg-dark text-white">
+      <span>Your granted wishes: {{user_granted}} </span>
+    </div> 
+     
+ </div>
+
+ <div class="input-group form-group">
+    <div class="d-block p-2 bg-dark text-white">
+      <span>Your pending wishes: {{user_pending}}</span>
+    </div> 
+     
+ </div>
+
+    
+
+</div>
+</body>
+</html>

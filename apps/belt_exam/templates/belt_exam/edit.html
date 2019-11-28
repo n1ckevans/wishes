@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Wishing App</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="bg-dark text-white">
+    <div class="container">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  
+   <nav class="navbar navbar-expand navbar-dark  bg-primary">
+    <a class="navbar-brand" href="/home">Hello {{ wish.user.first_name }}! Let's Edit</a>
+    <div class="collapse navbar-collapse order-0 dual-collapse2" id="navbarSupportedContent">
+      
+      <span class="navbar-text text-white font-weight-bold mr-auto"></span>
+      
+      <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+              <a class="nav-link" href="/">Add Book and Preview</a>
+            </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  {% if messages %}
+  <ul class="list-unstyled d-inline-block">
+    {% for message in messages %}
+    <li class="text-left text-danger">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+
+  <div class="card bg-dark text-white">
+      <div class="card-body text-center">
+        <form action="/wishes/edit_wish/{{wish.id}}" method="post">
+          {% csrf_token %}
+          <div class="input-group form-group">
+             <div class="d-block p-2 bg-dark text-white">
+               <span>I wish for:</span>
+             </div> 
+              <textarea type="text"name="item" class="form-control">{{wish.item}}</textarea>t
+          </div>
+          <div class="input-group form-group">
+              <div class="d-block p-2 bg-dark text-white">
+                <span>Description:</span>
+              </div> 
+               <textarea type="text" name="desc" class="form-control">{{wish.desc}}</textarea>
+           </div>
+         
+             
+         
+
+          <div class="form-group">
+              <a name="btn" class="btn btn-outline-primary float-left login_btn mr-2" href="/cancel">Cancel</a>
+        
+            <input type="submit" name="btn" value="Submit" class="btn btn-outline-primary float-left login_btn">
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+
+    
+
+</div>
+</body>
+</html>
